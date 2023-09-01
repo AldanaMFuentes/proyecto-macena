@@ -321,7 +321,7 @@ export default {
           checkbox: this.checkboxSelected()
         }
         let respuesta = await this.postContacto(payload);
-        console.log(respuesta);
+        // console.log(respuesta);
 
         if (respuesta.status === 200) {
           const whatsappLink = this.generateWhatsAppLink();
