@@ -10,19 +10,39 @@
       fade-img-on-scroll
       scroll-target="#scrolling-techniques-3"
     >
-      <div class="d-flex align-center">
+      <div class="d-flex align-center v-item-group theme--dark">
         <!-- <v-btn text @click="setSelectedComponent('main-page')"></v-btn> -->
         <router-link to="/MainPage">
-          <v-btn text class="selected-button"> Presentación </v-btn>
+          <button
+            type="button"
+            class="v-btn v-btn--text theme--dark v-size--default"
+          >
+            <span class="v-btn__content"> Presentación </span>
+          </button>
         </router-link>
         <router-link to="/ExperienceEducation">
-          <v-btn text class="selected-button"> Experiencia y educación </v-btn>
+          <button
+            type="button"
+            class="v-btn v-btn--text theme--dark v-size--default"
+          >
+            <span class="v-btn__content">Experiencia y educación</span>
+          </button>
         </router-link>
         <router-link to="/MySkills">
-          <v-btn text class="selected-button"> Aptitudes </v-btn>
+          <button
+            type="button"
+            class="v-btn v-btn--text theme--dark v-size--default"
+          >
+            <span class="v-btn__content">Aptitudes</span>
+          </button>
         </router-link>
         <router-link to="/ContactMe">
-          <v-btn text class="selected-button"> Contacto </v-btn>
+          <button
+            type="button"
+            class="v-btn v-btn--text theme--dark v-size--default"
+          >
+            <span class="v-btn__content">Contacto</span>
+          </button>
         </router-link>
       </div>
 
@@ -95,10 +115,21 @@ html {
 .v-main__wrap {
   min-height: 500px;
 }
-.router-link-active .v-btn:not(.selected-button) {
-  border-radius: 4px;
+/* .selected-button:focus {
   border-color: white;
-  color: white;
   background-color: transparent;
 }
+.selected-button:active {
+  border-color: transparent;
+  background-color: transparent;
+} */
+/* a.router-link-active {
+  position: absolute;
+  transform: scale(0);
+  text-decoration: underline;
+  color: inherit;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+} */
 </style>
