@@ -115,21 +115,4 @@ html {
 .v-main__wrap {
   min-height: 500px;
 }
-/* .selected-button:focus {
-  border-color: white;
-  background-color: transparent;
-}
-.selected-button:active {
-  border-color: transparent;
-  background-color: transparent;
-} */
-/* a.router-link-active {
-  position: absolute;
-  transform: scale(0);
-  text-decoration: underline;
-  color: inherit;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-} */
 </style>
