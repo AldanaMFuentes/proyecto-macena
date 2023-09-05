@@ -1,4 +1,4 @@
-
+import Vue from "vue";
 // import { createRouter, createWebHashHistory } from "vue-router";
 import VueRouter from "vue-router";
 import MainPage from "./components/UI/MainPage.vue";
