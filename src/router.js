@@ -12,11 +12,11 @@ Vue.use(VueRouter);
 
 const router = new VueRouter({
   // history: createWebHashHistory(),
-  mode: 'hash',
+  mode: "history",
   routes: [
     {
-      path: '/',
-      redirect: '/MainPage'
+      path: "/",
+      redirect: "/MainPage",
     },
     {
       path: "/MainPage",
@@ -35,19 +35,21 @@ const router = new VueRouter({
       component: ContactMe,
     },
     {
-      path: '/:notFound(.*)',
-      component: NotFound
-    }
+      path: "/:notFound(.*)",
+      component: NotFound,
+    },
   ],
-  // scrollBehavior(to, from, savedPosition) {
-  //   if (savedPosition) {
-  //     return savedPosition;
-  //   }
-  //   return {
-  //     left: 0,
-  //     top: 0
-  //   };
-  // }
+  linkActiveClass: 'v-btn v-btn--text theme--dark v-size--default router-link-active',
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      return {
+        left: 0,
+        top: 0,
+      };
+    }
+  },
 });
 
-export default router
+export default router;

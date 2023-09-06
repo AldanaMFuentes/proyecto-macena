@@ -39,13 +39,13 @@ export default {
       const response = await axios.get(
         `https://pil-2023-land-default-rtdb.firebaseio.com/personajes/Harrington/experiencia.json`
       );
-      this.cards[0].activities = response.data;
+      this.cards[0].activities = (response.data ?? []).sort((a, b) => b.id - a.id);
     },
     async getEducacion() {
       const response = await axios.get(
         `https://pil-2023-land-default-rtdb.firebaseio.com/personajes/Harrington/educacion.json`
       );
-      this.cards[1].activities = response.data;
+      this.cards[1].activities = (response.data ?? []).sort((a, b) => b.id - a.id);
     },
   },
   created() {
