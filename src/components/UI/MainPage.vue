@@ -1,60 +1,85 @@
 <template>
-  <div style="margin: 20px">
-    <v-card class="mx-auto" max-width="850" outlined>
-      <v-progress-linear
-        indeterminate
-        color="#1E355F"
-        v-if="isLoading"
-      ></v-progress-linear>
-      <v-list-item three-line>
-        <v-list-item-content>
-          <div class="text-h3 mb-4"><strong>PATRICK HARRINGTON</strong></div>
-          {{ presentacion }}
-        </v-list-item-content>
+  <v-app class="overflow-hidden">
+    <NavBar />
+    <v-sheet id="scrolling-techniques-3" class="custom-sheet">
+      <v-container style="height: 128px"></v-container>
+      <v-main style="padding: 0px">
+        <!-- <MainPage v-if="selectedComponent === 'main-page'"/>
+        <ExperienceEducation v-if="selectedComponent === 'experience-education'"/>
+        <MySkills v-if="selectedComponent === 'my-skills'"/>
+        <ContactMe v-if="selectedComponent === 'contact-me'"/> -->
 
-        <v-img src="../../assets/patrick.jpg" alt="Patrick-Photo"></v-img>
-      </v-list-item>
-    </v-card>
-  </div>
+        <!-- <component :is="selectedComponent"> </component> -->
+        <router-view></router-view>
+      </v-main>
+      <AppFooter />
+    </v-sheet>
+  </v-app>
 </template>
 
 <script>
-import axios from "axios";
+import NavBar from "./components/Layout/NavBar.vue";
+import AppFooter from "./components/Layout/AppFooter.vue";
+// import router from './router.js';
+// import MainPage from "./components/UI/MainPage.vue";
+// import ExperienceEducation from "./components/UI/ExperienceEducation.vue";
+// import MySkills from "./components/UI/MySkills.vue";
+// import ContactMe from "./components/Forms/ContactMe.vue";
 
 export default {
   name: "MainPage",
+
+  components: {
+    NavBar,
+    AppFooter,
+    // MainPage,
+    // ExperienceEducation,
+    // MySkills,
+    // ContactMe,
+  },
+
   data() {
     return {
-      presentacion: "",
-      isLoading: false,
+      // selectedComponent: "main-page",
+      // actualPath: router.history.current.path
     };
   },
   methods: {
-    async getPresentacion() {
-      this.isLoading = true;
-      const response = await axios.get(
-        `https://pil-2023-land-default-rtdb.firebaseio.com/personajes/Harrington/presentacion.json`
-      );
-      this.presentacion = response.data;
-      this.isLoading = false;
-    },
+    // setSelectedComponent(cmp) {
+    //   this.selectedComponent = cmp;
+    // },
   },
-  created() {
-    this.getPresentacion();
-  },
+  // mounted() {
+  //   if (this.actualPath == "/MainPage") {
+  //     // let v = document.getElementById("botonPresentacion");
+  //     // console.log(v);
+  //     // v.click();
+  //     this.$refs.botonPresentacion.click();
+  //     console.log("🚀 ~ file: App.vue:104 ~ mounted ~ this.$refs.botonPresentacion.click();:", this.$refs.botonPresentacion)
+  //   } 
+  //   console.log(this.actualPath);
+  // }
 };
 </script>
 
-<style scoped>
-.v-list-item__content {
-  flex: none;
-  width: 350px;
-  text-align: justify;
+<style>
+.custom-sheet {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
 }
-.v-list-item {
-  align-items: inherit;
+.v-toolbar--prominent .v-toolbar__content {
+  display: flex;
+  align-items: center;
 }
-.v-list-item.v-list-item--three-line.theme--light {
-  padding-right: 0px;
+html {
+  overflow: hidden;
+}
+.scrollable {
+  overflow-y: scroll;
+}
+.v-main__wrap {
+  min-height: 500px;
 }
 </style>

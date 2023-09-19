@@ -1,7 +1,8 @@
 import Vue from "vue";
 // import { createRouter, createWebHashHistory } from "vue-router";
 import VueRouter from "vue-router";
-import MainPage from "./components/UI/MainPage.vue";
+import TheHome from "./App.vue";
+import MyPresentation from "./components/UI/MyPresentation.vue";
 import ExperienceEducation from "./components/UI/ExperienceEducation.vue";
 import MySkills from "./components/UI/MySkills.vue";
 import ContactMe from "./components/Forms/ContactMe.vue";
@@ -16,11 +17,15 @@ const router = new VueRouter({
   routes: [
     {
       path: "/",
-      redirect: "/MainPage",
+      redirect: "/TheHome",
     },
     {
-      path: "/MainPage",
-      component: MainPage,
+      path: "/TheHome",
+      component: TheHome
+    },
+    {
+      path: "/MyPresentation",
+      component: MyPresentation,
     },
     {
       path: "/ExperienceEducation",
