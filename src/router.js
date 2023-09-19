@@ -39,17 +39,18 @@ const router = new VueRouter({
       component: NotFound,
     },
   ],
-  linkActiveClass: 'v-btn v-btn--text theme--dark v-size--default router-link-active',
-  scrollBehavior(to, from, savedPosition) {
-    if (savedPosition) {
-      return savedPosition;
-    } else {
-      return {
-        left: 0,
-        top: 0,
-      };
-    }
-  },
+  // scrollBehavior(to, from, savedPosition) {
+  //   if (savedPosition) {
+  //     console.log("🚀 ~ file: router.js:44 ~ scrollBehavior ~ savedPosition:", savedPosition)
+  //     return savedPosition;
+  //   } else {
+  //     console.log("🚀 ~ file: router.js:44 ~ scrollBehavior ~ savedPosition: else", savedPosition)
+  //     return {
+  //       x: 250,
+  //       y: 175,
+  //     };
+  //   }
+  // },
 });
 
 export default router;

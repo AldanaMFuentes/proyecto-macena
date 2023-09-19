@@ -1,6 +1,11 @@
 <template>
   <div style="margin: 20px">
     <v-card class="mx-auto" max-width="850" outlined>
+      <v-progress-linear
+        indeterminate
+        color="#1E355F"
+        v-if="isLoading"
+      ></v-progress-linear>
       <v-list-item three-line>
         <v-list-item-content>
           <div class="text-h3 mb-4"><strong>PATRICK HARRINGTON</strong></div>
@@ -21,19 +26,22 @@ export default {
   data() {
     return {
       presentacion: "",
+      isLoading: false,
     };
   },
   methods: {
     async getPresentacion() {
+      this.isLoading = true;
       const response = await axios.get(
         `https://pil-2023-land-default-rtdb.firebaseio.com/personajes/Harrington/presentacion.json`
       );
       this.presentacion = response.data;
+      this.isLoading = false;
     },
   },
   created() {
     this.getPresentacion();
-  }
+  },
 };
 </script>
 

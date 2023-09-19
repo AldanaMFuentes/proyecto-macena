@@ -1,6 +1,11 @@
 <template>
   <li>
     <v-card class="mx-auto scrollable-card" max-width="850">
+      <v-progress-linear
+        indeterminate
+        color="#1E355F"
+        v-if="isLoading"
+      ></v-progress-linear>
       <v-card-actions>
         <v-btn color="#1E355F" text @click="show = !show"> {{ title }} </v-btn>
 
@@ -51,6 +56,9 @@ export default {
         );
       },
     },
+    isLoading: {
+      type: Boolean,
+    },
   },
   data() {
     return {
@@ -59,7 +67,9 @@ export default {
   },
   methods: {
     defaultShow() {
-      if (this.title === "Experiencia Profesional") {this.show = true}
+      if (this.title === "Experiencia Profesional") {
+        this.show = true;
+      }
       return this.show;
     },
   },

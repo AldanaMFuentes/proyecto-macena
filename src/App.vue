@@ -66,6 +66,7 @@
 
 <script>
 import AppFooter from "./components/Layout/AppFooter.vue";
+// import router from './router.js';
 // import MainPage from "./components/UI/MainPage.vue";
 // import ExperienceEducation from "./components/UI/ExperienceEducation.vue";
 // import MySkills from "./components/UI/MySkills.vue";
@@ -85,6 +86,7 @@ export default {
   data() {
     return {
       // selectedComponent: "main-page",
+      // actualPath: router.history.current.path
     };
   },
   methods: {
@@ -92,6 +94,16 @@ export default {
     //   this.selectedComponent = cmp;
     // },
   },
+  // mounted() {
+  //   if (this.actualPath == "/MainPage") {
+  //     // let v = document.getElementById("botonPresentacion");
+  //     // console.log(v);
+  //     // v.click();
+  //     this.$refs.botonPresentacion.click();
+  //     console.log("🚀 ~ file: App.vue:104 ~ mounted ~ this.$refs.botonPresentacion.click();:", this.$refs.botonPresentacion)
+  //   } 
+  //   console.log(this.actualPath);
+  // }
 };
 </script>
 

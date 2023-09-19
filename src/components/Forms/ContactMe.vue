@@ -216,6 +216,7 @@ import {
   ValidationProvider,
   setInteractionMode,
 } from "vee-validate";
+//import router from "@/router.js"
 
 setInteractionMode("eager");
 
@@ -277,7 +278,7 @@ export default {
       editAlert: false,
       editText: "Por favor edite los campos necesarios y reenvíe el formulario",
       errorAlert: false,
-      errorText: "Ocurrió un problema, intente de nuevo más tarde"
+      errorText: "Ocurrió un problema, intente de nuevo más tarde",
     };
   },
   methods: {
@@ -301,6 +302,9 @@ export default {
       this.editAlert = false;
       this.errorAlert = false;
       this.$refs.observer.reset();
+      // scrollBehavior
+      // router.scrollTo(0, 0);
+      //window.scrollTo(0, 0);
     },
     handleCriticaChange() {
       if (this.checkbox.critica)
@@ -318,8 +322,8 @@ export default {
           email: this.email,
           select: this.select,
           textarea: this.textarea,
-          checkbox: this.checkboxSelected()
-        }
+          checkbox: this.checkboxSelected(),
+        };
         let respuesta = await this.postContacto(payload);
         // console.log(respuesta);
 
@@ -330,7 +334,7 @@ export default {
             this.confirmAlert = true;
           }, 1500);
         } else {
-          this.errorAlert = true
+          this.errorAlert = true;
         }
         this.loadingAlert = false;
         // this.getContacto();
@@ -360,10 +364,10 @@ export default {
       }
 
       // const phoneNumber = "+54351153132672";
-      
-      return `https://api.whatsapp.com/send?phone=${this.phoneNumber}&text=${encodeURIComponent(
-        message
-      )}`;
+
+      return `https://api.whatsapp.com/send?phone=${
+        this.phoneNumber
+      }&text=${encodeURIComponent(message)}`;
     },
     async getPhoneNumber() {
       const response = await axios.get(
@@ -373,7 +377,8 @@ export default {
     },
     async postContacto(payload) {
       const response = await axios.post(
-        `https://pil-2023-land-default-rtdb.firebaseio.com/contacto/Harrington.json`, payload
+        `https://pil-2023-land-default-rtdb.firebaseio.com/contacto/Harrington.json`,
+        payload
       );
       return response;
     },
@@ -386,7 +391,7 @@ export default {
   },
   created() {
     this.getPhoneNumber();
-  }
+  },
 };
 </script>
 
