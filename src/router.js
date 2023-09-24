@@ -1,7 +1,7 @@
 import Vue from "vue";
 // import { createRouter, createWebHashHistory } from "vue-router";
 import VueRouter from "vue-router";
-import TheHome from "./App.vue";
+import HomePage from "./components/UI/HomePage.vue";
 import MyPresentation from "./components/UI/MyPresentation.vue";
 import ExperienceEducation from "./components/UI/ExperienceEducation.vue";
 import MySkills from "./components/UI/MySkills.vue";
@@ -17,26 +17,26 @@ const router = new VueRouter({
   routes: [
     {
       path: "/",
-      redirect: "/TheHome",
+      redirect: "/home",
     },
     {
-      path: "/TheHome",
-      component: TheHome
+      path: "/home",
+      component: HomePage
     },
     {
-      path: "/MyPresentation",
+      path: "/presentation",
       component: MyPresentation,
     },
     {
-      path: "/ExperienceEducation",
+      path: "/experience-education",
       component: ExperienceEducation,
     },
     {
-      path: "/MySkills",
+      path: "/skills",
       component: MySkills,
     },
     {
-      path: "/ContactMe",
+      path: "/contact-me",
       component: ContactMe,
     },
     {

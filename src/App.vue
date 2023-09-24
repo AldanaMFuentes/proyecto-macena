@@ -1,49 +1,43 @@
 <template>
-<!-- acá iría el home con las redirecciones a los componentes (sin navbar y footer) -->
   <v-app class="overflow-hidden">
-    <v-sheet id="scrolling-techniques-3" class="custom-sheet">
-      <v-container style="height: 128px"></v-container>
-      <v-main style="padding: 0px">
-        <!-- <MainPage v-if="selectedComponent === 'main-page'"/>
-        <ExperienceEducation v-if="selectedComponent === 'experience-education'"/>
-        <MySkills v-if="selectedComponent === 'my-skills'"/>
-        <ContactMe v-if="selectedComponent === 'contact-me'"/> -->
-
-        <!-- <component :is="selectedComponent"> </component> -->
-        <router-view></router-view>
-      </v-main>
-    </v-sheet>
+    <HomeBar />
+    <v-main id="home" class="custom-sheet">
+      <router-view></router-view>
+    <AppFooter />
+    </v-main>
   </v-app>
 </template>
 
 <script>
-// import router from './router.js';
-// import MainPage from "./components/UI/MainPage.vue";
-// import ExperienceEducation from "./components/UI/ExperienceEducation.vue";
-// import MySkills from "./components/UI/MySkills.vue";
-// import ContactMe from "./components/Forms/ContactMe.vue";
+import HomeBar from "./components/Layout/HomeBar.vue";
+import AppFooter from "./components/Layout/AppFooter.vue";
+// import NavBar from "./components/Layout/NavBar.vue";
 
 export default {
-  name: "TheHome",
+  name: "App",
 
-  components: {
-    // MainPage,
-    // ExperienceEducation,
-    // MySkills,
-    // ContactMe,
-  },
-
-  data() {
-    return {
-
-    };
-  },
-  methods: {
-    
-  },
+  components: { HomeBar, AppFooter },
 };
 </script>
 
 <style>
-
+.custom-sheet {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+}
+html {
+  overflow: hidden;
+}
+.scrollable {
+  overflow-y: scroll;
+}
+.v-main__wrap {
+  min-height: 500px;
+}
+.v-toolbar--prominent .v-toolbar__content {
+  display: flex;
+  align-items: center;
+}
 </style>

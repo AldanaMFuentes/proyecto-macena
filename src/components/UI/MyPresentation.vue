@@ -1,6 +1,6 @@
 <template>
-  <div style="margin: 20px">
-    <v-card class="mx-auto" max-width="850" outlined>
+  <v-container>
+    <v-card class="mx-auto" max-width="850" outlined style="margin: 20px">
       <v-progress-linear
         indeterminate
         color="#1E355F"
@@ -15,14 +15,18 @@
         <v-img src="@/assets/patrick.jpg" alt="Patrick-Photo"></v-img>
       </v-list-item>
     </v-card>
-  </div>
+  </v-container>
 </template>
 
 <script>
 import axios from "axios";
 
+
 export default {
   name: "MyPresentation",
+  components: {
+   
+  },
   data() {
     return {
       presentacion: "",

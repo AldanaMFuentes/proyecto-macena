@@ -1,5 +1,5 @@
 <template>
-  <div style="margin: 20px">
+  <v-container>
     <ul>
       <InfoCard
         v-for="card in cards"
@@ -9,7 +9,7 @@
         :isLoading="card.isLoading"
       />
     </ul>
-  </div>
+  </v-container>
 </template>
 
 <script>

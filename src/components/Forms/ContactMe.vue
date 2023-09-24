@@ -1,204 +1,206 @@
 <template>
-  <v-card class="mx-auto" max-width="850">
-    <v-card-title> FORMULARIO DE CONTACTO </v-card-title>
-    <v-divider></v-divider>
+  <v-container>
+    <v-card class="mx-auto" max-width="850">
+      <v-card-title> FORMULARIO DE CONTACTO </v-card-title>
+      <v-divider></v-divider>
 
-    <validation-observer ref="observer" v-slot="{ invalid }">
-      <v-form @submit.prevent="showAlert">
-        <validation-provider
-          v-slot="{ errors }"
-          name="nombre y apellido"
-          rules="required|max:30|alpha_spaces"
-        >
-          <v-text-field
-            v-model.trim="name"
-            :counter="30"
-            :error-messages="errors"
-            label="Nombre y Apellido"
-            required
-            outlined
-          ></v-text-field>
-        </validation-provider>
-
-        <validation-provider
-          v-slot="{ errors }"
-          name="mail"
-          rules="required|email"
-        >
-          <v-text-field
-            v-model.trim="email"
-            :error-messages="errors"
-            label="Mail"
-            required
-            outlined
-          ></v-text-field>
-        </validation-provider>
-
-        <validation-provider
-          v-slot="{ errors }"
-          name="motivo de contacto"
-          rules="required"
-        >
-          <v-select
-            v-model="select"
-            :items="items"
-            :error-messages="errors"
-            label="Motivo de contacto"
-            data-vv-name="select"
-            required
-            outlined
-          ></v-select>
-        </validation-provider>
-
-        <validation-provider
-          v-slot="{ errors }"
-          name="observaciones"
-          rules="max:300"
-        >
-          <v-textarea
-            v-model.trim="textarea"
-            :counter="300"
-            :error-messages="errors"
-            outlined
-            name="observaciones"
-            label="Observaciones"
-            auto-grow
-            rows="1"
-          ></v-textarea>
-        </validation-provider>
-
-        <v-card style="margin-bottom: 20px">
-          <v-card-title outlined
-            >Nivel de urgencia de la solicitud</v-card-title
+      <validation-observer ref="observer" v-slot="{ invalid }">
+        <v-form @submit.prevent="showAlert">
+          <validation-provider
+            v-slot="{ errors }"
+            name="nombre y apellido"
+            rules="required|max:30|alpha_spaces"
           >
-          <v-card-subtitle
-            >Indique el plazo máximo que considera aceptable para la espera de
-            una respuesta.
-          </v-card-subtitle>
-          <v-container fluid>
-            <v-checkbox
-              v-model="checkbox.noUrgente"
-              label="No urgente - La respuesta podría demorar más de 10 días"
-              :disabled="checkbox.critica"
-            ></v-checkbox>
-            <v-checkbox
-              v-model="checkbox.moderada"
-              label="Moderada - La respuesta podría demorar entre 5 y 10 días"
-              :disabled="checkbox.critica"
-            ></v-checkbox>
-            <v-checkbox
-              v-model="checkbox.urgente"
-              label="Urgente - La respuesta podría demorar entre 2 y 5 días"
-              :disabled="checkbox.critica"
-            ></v-checkbox>
-            <v-checkbox
-              v-model="checkbox.muyUrgente"
-              label="Muy urgente - La solicitud será respondida en las próximas 48hs"
-              :disabled="checkbox.critica"
-            ></v-checkbox>
-            <v-checkbox
-              v-model="checkbox.critica"
-              label="Crítica - La solicitud requiere atención inmediata"
-              @change="handleCriticaChange"
-            ></v-checkbox>
-          </v-container>
-        </v-card>
+            <v-text-field
+              v-model.trim="name"
+              :counter="30"
+              :error-messages="errors"
+              label="Nombre y Apellido"
+              required
+              outlined
+            ></v-text-field>
+          </validation-provider>
 
-        <v-btn
-          class="mr-4"
-          type="submit"
-          :disabled="invalid || loadingAlert || confirmAlert"
-        >
-          Enviar
-          <v-spacer style="width: 8px"></v-spacer>
-          <v-icon size="24px">mdi-whatsapp</v-icon>
-        </v-btn>
+          <validation-provider
+            v-slot="{ errors }"
+            name="mail"
+            rules="required|email"
+          >
+            <v-text-field
+              v-model.trim="email"
+              :error-messages="errors"
+              label="Mail"
+              required
+              outlined
+            ></v-text-field>
+          </validation-provider>
 
-        <v-tooltip right>
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn @click="clear" color="#1E355F" v-bind="attrs" v-on="on">
-              <v-icon size="24px" class="mx-4 white--text"
-                >mdi-filter-remove-outline</v-icon
-              >
-            </v-btn>
-          </template>
-          <span>Limpiar campos</span>
-        </v-tooltip>
-        <v-alert
-          v-model="loadingAlert"
-          :value="loadingAlert"
-          color="#ccc"
-          transition="scale-transition"
-          class="centered-alert"
-        >
-          {{ loadingText }}
-          <!-- <v-spacer style="width: 10px"></v-spacer>
+          <validation-provider
+            v-slot="{ errors }"
+            name="motivo de contacto"
+            rules="required"
+          >
+            <v-select
+              v-model="select"
+              :items="items"
+              :error-messages="errors"
+              label="Motivo de contacto"
+              data-vv-name="select"
+              required
+              outlined
+            ></v-select>
+          </validation-provider>
+
+          <validation-provider
+            v-slot="{ errors }"
+            name="observaciones"
+            rules="max:300"
+          >
+            <v-textarea
+              v-model.trim="textarea"
+              :counter="300"
+              :error-messages="errors"
+              outlined
+              name="observaciones"
+              label="Observaciones"
+              auto-grow
+              rows="1"
+            ></v-textarea>
+          </validation-provider>
+
+          <v-card style="margin-bottom: 20px">
+            <v-card-title outlined
+              >Nivel de urgencia de la solicitud</v-card-title
+            >
+            <v-card-subtitle
+              >Indique el plazo máximo que considera aceptable para la espera de
+              una respuesta.
+            </v-card-subtitle>
+            <v-container fluid>
+              <v-checkbox
+                v-model="checkbox.noUrgente"
+                label="No urgente - La respuesta podría demorar más de 10 días"
+                :disabled="checkbox.critica"
+              ></v-checkbox>
+              <v-checkbox
+                v-model="checkbox.moderada"
+                label="Moderada - La respuesta podría demorar entre 5 y 10 días"
+                :disabled="checkbox.critica"
+              ></v-checkbox>
+              <v-checkbox
+                v-model="checkbox.urgente"
+                label="Urgente - La respuesta podría demorar entre 2 y 5 días"
+                :disabled="checkbox.critica"
+              ></v-checkbox>
+              <v-checkbox
+                v-model="checkbox.muyUrgente"
+                label="Muy urgente - La solicitud será respondida en las próximas 48hs"
+                :disabled="checkbox.critica"
+              ></v-checkbox>
+              <v-checkbox
+                v-model="checkbox.critica"
+                label="Crítica - La solicitud requiere atención inmediata"
+                @change="handleCriticaChange"
+              ></v-checkbox>
+            </v-container>
+          </v-card>
+
+          <v-btn
+            class="mr-4"
+            type="submit"
+            :disabled="invalid || loadingAlert || confirmAlert"
+          >
+            Enviar
+            <v-spacer style="width: 8px"></v-spacer>
+            <v-icon size="24px">mdi-whatsapp</v-icon>
+          </v-btn>
+
+          <v-tooltip right>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn @click="clear" color="#1E355F" v-bind="attrs" v-on="on">
+                <v-icon size="24px" class="mx-4 white--text"
+                  >mdi-filter-remove-outline</v-icon
+                >
+              </v-btn>
+            </template>
+            <span>Limpiar campos</span>
+          </v-tooltip>
+          <v-alert
+            v-model="loadingAlert"
+            :value="loadingAlert"
+            color="#ccc"
+            transition="scale-transition"
+            class="centered-alert"
+          >
+            {{ loadingText }}
+            <!-- <v-spacer style="width: 10px"></v-spacer>
           <v-btn color="#1E355F" right dark @click="loadingAlert = false">
             Cerrar
           </v-btn> -->
-        </v-alert>
-        <v-alert
-          v-model="confirmAlert"
-          :value="confirmAlert"
-          dark
-          color="teal"
-          transition="scale-transition"
-          class="centered-alert"
-        >
-          {{ confirmText }}
+          </v-alert>
+          <v-alert
+            v-model="confirmAlert"
+            :value="confirmAlert"
+            dark
+            color="teal"
+            transition="scale-transition"
+            class="centered-alert"
+          >
+            {{ confirmText }}
 
-          <v-row>
-            <v-col cols="1"></v-col>
-            <v-col cols="5">
-              <v-btn color="white" right class="teal--text" @click="clear">
-                Aceptar
-              </v-btn>
-            </v-col>
-            <v-col cols="5">
-              <v-btn
-                color="white"
-                right
-                class="teal--text"
-                @click="
-                  editAlert = true;
-                  confirmAlert = false;
-                "
-              >
-                Editar
-              </v-btn>
-            </v-col>
-            <v-col cols="1"></v-col>
-          </v-row>
-        </v-alert>
-        <v-alert
-          v-model="editAlert"
-          :value="editAlert"
-          color="#ccc"
-          transition="scale-transition"
-          class="centered-alert"
-        >
-          {{ editText }}
-          <v-spacer style="width: 10px"></v-spacer>
-          <v-btn color="#1E355F" right dark @click="editAlert = false">
-            Cerrar
-          </v-btn>
-        </v-alert>
-        <v-alert
-          v-model="errorAlert"
-          :value="errorAlert"
-          color="#ccc"
-          transition="scale-transition"
-          class="centered-alert"
-        >
-          {{ errorText }}
-          <v-spacer style="width: 10px"></v-spacer>
-          <v-btn color="#1E355F" right dark @click="errorAlert = false">
-            Cerrar
-          </v-btn>
-        </v-alert>
-      </v-form>
-    </validation-observer>
-  </v-card>
+            <v-row>
+              <v-col cols="1"></v-col>
+              <v-col cols="5">
+                <v-btn color="white" right class="teal--text" @click="clear">
+                  Aceptar
+                </v-btn>
+              </v-col>
+              <v-col cols="5">
+                <v-btn
+                  color="white"
+                  right
+                  class="teal--text"
+                  @click="
+                    editAlert = true;
+                    confirmAlert = false;
+                  "
+                >
+                  Editar
+                </v-btn>
+              </v-col>
+              <v-col cols="1"></v-col>
+            </v-row>
+          </v-alert>
+          <v-alert
+            v-model="editAlert"
+            :value="editAlert"
+            color="#ccc"
+            transition="scale-transition"
+            class="centered-alert"
+          >
+            {{ editText }}
+            <v-spacer style="width: 10px"></v-spacer>
+            <v-btn color="#1E355F" right dark @click="editAlert = false">
+              Cerrar
+            </v-btn>
+          </v-alert>
+          <v-alert
+            v-model="errorAlert"
+            :value="errorAlert"
+            color="#ccc"
+            transition="scale-transition"
+            class="centered-alert"
+          >
+            {{ errorText }}
+            <v-spacer style="width: 10px"></v-spacer>
+            <v-btn color="#1E355F" right dark @click="errorAlert = false">
+              Cerrar
+            </v-btn>
+          </v-alert>
+        </v-form>
+      </validation-observer>
+    </v-card>
+  </v-container>
 </template>
 
 <script>
