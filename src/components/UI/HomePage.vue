@@ -3,7 +3,7 @@
     <v-img src="@/assets/home-photo.jpg" alt="Home-Photo" height="700" absolute>
       <div class="home-title">
         <strong>PATRICK HARRINGTON</strong>
-        <router-link to="/presentation">
+        <router-link to="/presentation" @click="setActiveBar('NavBar')">
           <v-btn outlined color="#1E355F">Conocé más sobre mi</v-btn>
         </router-link>
       </div>
@@ -26,7 +26,7 @@
                   </v-card>
                 </v-row>
                 <v-row class="d-flex align-flex-start my-5 mx-auto">
-                  <router-link to="/experience-education">
+                  <router-link to="/experience-education" @click="setActiveBar('NavBar')">
                     <v-card outlined flat class="home-cards">
                       <div style="margin-top: 60px"></div>
                       <button
@@ -53,7 +53,7 @@
               </v-col>
               <v-col cols="3">
                 <v-row class="d-flex align-flex-start my-5 mx-auto">
-                  <router-link to="/skills">
+                  <router-link to="/skills" @click="setActiveBar('NavBar')">
                     <v-card outlined flat class="home-cards">
                       <v-icon
                         size="40px"
@@ -92,7 +92,7 @@
                   </v-card>
                 </v-row>
                 <v-row class="d-flex align-flex-start my-5 mx-auto">
-                  <router-link to="/contact-me">
+                  <router-link to="/contact-me" @click="setActiveBar('NavBar')">
                     <v-card outlined flat class="home-cards">
                       <div style="margin-top: 130px"></div>
                       <button
@@ -142,6 +142,12 @@
 <script>
 export default {
   name: "HomePage",
+
+  methods: {
+    setActiveBar(barName) {
+      this.$store.commit('setActiveBar', barName);
+    }
+  }
 };
 </script>
 

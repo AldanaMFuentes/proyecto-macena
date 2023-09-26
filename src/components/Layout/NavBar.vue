@@ -10,8 +10,7 @@
     scroll-target="#home"
   >
     <div class="d-flex align-center v-item-group theme--dark">
-      <!-- <v-btn text @click="setSelectedComponent('main-page')"></v-btn> -->
-      <router-link to="/home">
+      <router-link to="/home" @click="setActiveBar('HomeBar')">
         <button
           icon
           class="v-btn v-btn--text theme--dark v-size--default"
@@ -19,7 +18,7 @@
           <v-icon size="24px" class="pa-2">mdi-home</v-icon>
         </button>
       </router-link>
-      <router-link to="/presentation">
+      <router-link to="/presentation" @click="setActiveBar('NavBar')">
         <button
           type="button"
           class="v-btn v-btn--text theme--dark v-size--default"
@@ -27,7 +26,7 @@
           <span class="v-btn__content"> Presentación </span>
         </button>
       </router-link>
-      <router-link to="/experience-education">
+      <router-link to="/experience-education" @click="setActiveBar('NavBar')">
         <button
           type="button"
           class="v-btn v-btn--text theme--dark v-size--default"
@@ -35,7 +34,7 @@
           <span class="v-btn__content">Experiencia y educación</span>
         </button>
       </router-link>
-      <router-link to="/skills">
+      <router-link to="/skills" @click="setActiveBar('NavBar')">
         <button
           type="button"
           class="v-btn v-btn--text theme--dark v-size--default"
@@ -43,7 +42,7 @@
           <span class="v-btn__content">Aptitudes</span>
         </button>
       </router-link>
-      <router-link to="/contact-me">
+      <router-link to="/contact-me" @click="setActiveBar('NavBar')">
         <button
           type="button"
           class="v-btn v-btn--text theme--dark v-size--default"
@@ -58,6 +57,11 @@
 <script>
 export default {
   name: "NavBar",
+   methods: {
+    setActiveBar(barName) {
+      this.$store.commit('setActiveBar', barName);
+    }
+  }
 };
 </script>
 

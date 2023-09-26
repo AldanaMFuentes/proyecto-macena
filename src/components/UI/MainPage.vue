@@ -4,7 +4,6 @@
     <v-sheet class="custom-sheet">
       <v-container style="height: 128px"></v-container>
       <v-main style="padding: 0px">
-        <!-- esto supuestamente redirecciona a los componentes desde la navbar -->
         <router-view></router-view>
       </v-main>
       <AppFooter />

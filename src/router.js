@@ -7,6 +7,7 @@ import ExperienceEducation from "./components/UI/ExperienceEducation.vue";
 import MySkills from "./components/UI/MySkills.vue";
 import ContactMe from "./components/Forms/ContactMe.vue";
 import NotFound from "./components/Nav/NotFound.vue";
+import store from "./store.js";
 
 Vue.config.productionTip = false;
 Vue.use(VueRouter);
@@ -18,10 +19,12 @@ const router = new VueRouter({
     {
       path: "/",
       redirect: "/home",
+      name: "Home",
     },
     {
       path: "/home",
-      component: HomePage
+      component: HomePage,
+      name: "Home",
     },
     {
       path: "/presentation",
@@ -44,18 +47,15 @@ const router = new VueRouter({
       component: NotFound,
     },
   ],
-  // scrollBehavior(to, from, savedPosition) {
-  //   if (savedPosition) {
-  //     console.log("🚀 ~ file: router.js:44 ~ scrollBehavior ~ savedPosition:", savedPosition)
-  //     return savedPosition;
-  //   } else {
-  //     console.log("🚀 ~ file: router.js:44 ~ scrollBehavior ~ savedPosition: else", savedPosition)
-  //     return {
-  //       x: 250,
-  //       y: 175,
-  //     };
-  //   }
-  // },
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.name === "Home") {
+    store.commit("setActiveBar", "HomeBar");
+  } else {
+    store.commit("setActiveBar", "NavBar");
+  }
+  next();
 });
 
 export default router;

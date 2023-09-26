@@ -1,9 +1,10 @@
 <template>
   <v-app class="overflow-hidden">
-    <HomeBar />
+    <HomeBar v-if="activeBar === 'HomeBar'" />
+    <NavBar v-if="activeBar === 'NavBar'" />
     <v-main id="home" class="custom-sheet">
       <router-view></router-view>
-    <AppFooter />
+      <AppFooter />
     </v-main>
   </v-app>
 </template>
@@ -11,12 +12,19 @@
 <script>
 import HomeBar from "./components/Layout/HomeBar.vue";
 import AppFooter from "./components/Layout/AppFooter.vue";
-// import NavBar from "./components/Layout/NavBar.vue";
+import NavBar from "./components/Layout/NavBar.vue";
+import { mapState } from "vuex";
 
 export default {
   name: "App",
 
-  components: { HomeBar, AppFooter },
+  computed: {
+    ...mapState({
+      activeBar: (state) => state.activeBar,
+    }),
+  },
+
+  components: { HomeBar, AppFooter, NavBar },
 };
 </script>
 
