@@ -13,15 +13,13 @@
 import HomeBar from "./components/Layout/HomeBar.vue";
 import AppFooter from "./components/Layout/AppFooter.vue";
 import NavBar from "./components/Layout/NavBar.vue";
-import { mapState } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: "App",
 
   computed: {
-    ...mapState({
-      activeBar: (state) => state.activeBar,
-    }),
+    ...mapGetters(["activeBar"]),
   },
 
   components: { HomeBar, AppFooter, NavBar },

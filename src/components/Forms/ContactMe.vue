@@ -21,35 +21,41 @@
             ></v-text-field>
           </validation-provider>
 
-          <validation-provider
-            v-slot="{ errors }"
-            name="mail"
-            rules="required|email"
-          >
-            <v-text-field
-              v-model.trim="email"
-              :error-messages="errors"
-              label="Mail"
-              required
-              outlined
-            ></v-text-field>
-          </validation-provider>
+          <v-row>
+            <v-col cols="6">
+              <validation-provider
+                v-slot="{ errors }"
+                name="mail"
+                rules="required|email"
+              >
+                <v-text-field
+                  v-model.trim="email"
+                  :error-messages="errors"
+                  label="Mail"
+                  required
+                  outlined
+                ></v-text-field>
+              </validation-provider>
+            </v-col>
 
-          <validation-provider
-            v-slot="{ errors }"
-            name="motivo de contacto"
-            rules="required"
-          >
-            <v-select
-              v-model="select"
-              :items="items"
-              :error-messages="errors"
-              label="Motivo de contacto"
-              data-vv-name="select"
-              required
-              outlined
-            ></v-select>
-          </validation-provider>
+            <v-col cols="6">
+              <validation-provider
+                v-slot="{ errors }"
+                name="motivo de contacto"
+                rules="required"
+              >
+                <v-select
+                  v-model="select"
+                  :items="items"
+                  :error-messages="errors"
+                  label="Motivo de contacto"
+                  data-vv-name="select"
+                  required
+                  outlined
+                ></v-select>
+              </validation-provider>
+            </v-col>
+          </v-row>
 
           <validation-provider
             v-slot="{ errors }"
