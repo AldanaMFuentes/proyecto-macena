@@ -139,10 +139,6 @@
             class="centered-alert"
           >
             {{ loadingText }}
-            <!-- <v-spacer style="width: 10px"></v-spacer>
-          <v-btn color="#1E355F" right dark @click="loadingAlert = false">
-            Cerrar
-          </v-btn> -->
           </v-alert>
           <v-alert
             v-model="confirmAlert"
@@ -210,7 +206,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import {
   required,
   digits,
@@ -224,7 +219,7 @@ import {
   ValidationProvider,
   setInteractionMode,
 } from "vee-validate";
-//import router from "@/router.js"
+import { mapActions, mapGetters } from "vuex";
 
 setInteractionMode("eager");
 
@@ -262,7 +257,6 @@ export default {
   data() {
     return {
       name: "",
-      phoneNumber: "",
       email: "",
       select: null,
       items: [
@@ -289,6 +283,9 @@ export default {
       errorText: "Ocurrió un problema, intente de nuevo más tarde",
     };
   },
+  computed: {
+    ...mapGetters(["phoneNumber"])
+  },
   methods: {
     submit() {
       this.$refs.observer.validate();
@@ -310,9 +307,6 @@ export default {
       this.editAlert = false;
       this.errorAlert = false;
       this.$refs.observer.reset();
-      // scrollBehavior
-      // router.scrollTo(0, 0);
-      //window.scrollTo(0, 0);
     },
     handleCriticaChange() {
       if (this.checkbox.critica)
@@ -333,7 +327,6 @@ export default {
           checkbox: this.checkboxSelected(),
         };
         let respuesta = await this.postContacto(payload);
-        // console.log(respuesta);
 
         if (respuesta.status === 200) {
           const whatsappLink = this.generateWhatsAppLink();
@@ -345,7 +338,6 @@ export default {
           this.errorAlert = true;
         }
         this.loadingAlert = false;
-        // this.getContacto();
       }
     },
     checkboxSelected() {
@@ -371,31 +363,11 @@ export default {
         message += `\n*Observaciones:* ${this.textarea}`;
       }
 
-      // const phoneNumber = "+54351153132672";
-
       return `https://api.whatsapp.com/send?phone=${
-        this.phoneNumber
+        this.$store.state.phoneNumber
       }&text=${encodeURIComponent(message)}`;
     },
-    async getPhoneNumber() {
-      const response = await axios.get(
-        `https://pil-2023-land-default-rtdb.firebaseio.com/personajes/Harrington/celContacto.json`
-      );
-      this.phoneNumber = response.data;
-    },
-    async postContacto(payload) {
-      const response = await axios.post(
-        `https://pil-2023-land-default-rtdb.firebaseio.com/contacto/Harrington.json`,
-        payload
-      );
-      return response;
-    },
-    // async getContacto() {
-    //   const response = await axios.get(
-    //     `https://pil-2023-land-default-rtdb.firebaseio.com/contacto/Harrington.json`
-    //   );
-    //   console.log(response.data)
-    // },
+    ...mapActions(["getPhoneNumber", "postContacto"])
   },
   created() {
     this.getPhoneNumber();

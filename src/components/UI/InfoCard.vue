@@ -40,7 +40,6 @@
 <script>
 export default {
   name: "InfoCard",
-  // props: ["title", "activities"],
   props: {
     title: {
       type: String,
@@ -50,7 +49,6 @@ export default {
       type: Array,
       required: true,
       validator: function (value) {
-        // Validar que todos los elementos en el array sean objetos
         return value.every(
           (item) => typeof item === "object" && !Array.isArray(item)
         );

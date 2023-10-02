@@ -4,12 +4,12 @@
       <v-progress-linear
         indeterminate
         color="#1E355F"
-        v-if="isLoading"
+        v-if="isLoading('presentation')"
       ></v-progress-linear>
       <v-list-item three-line>
         <v-list-item-content>
           <div class="text-h3 mb-4"><strong>PATRICK HARRINGTON</strong></div>
-          {{ presentacion }}
+          {{ presentationData }}
         </v-list-item-content>
 
         <v-img src="@/assets/patrick.jpg" alt="Patrick-Photo"></v-img>
@@ -19,32 +19,18 @@
 </template>
 
 <script>
-import axios from "axios";
-
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "MyPresentation",
-  components: {
-   
-  },
-  data() {
-    return {
-      presentacion: "",
-      isLoading: false,
-    };
+  computed: {
+    ...mapGetters(["isLoading", "presentationData"])
   },
   methods: {
-    async getPresentacion() {
-      this.isLoading = true;
-      const response = await axios.get(
-        `https://pil-2023-land-default-rtdb.firebaseio.com/personajes/Harrington/presentacion.json`
-      );
-      this.presentacion = response.data;
-      this.isLoading = false;
-    },
+    ...mapActions(["getPresentation"]),
   },
   created() {
-    this.getPresentacion();
+    this.getPresentation();
   },
 };
 </script>
