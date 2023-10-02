@@ -7,7 +7,7 @@ import ExperienceEducation from "./components/UI/ExperienceEducation.vue";
 import MySkills from "./components/UI/MySkills.vue";
 import ContactMe from "./components/Forms/ContactMe.vue";
 import NotFound from "./components/Nav/NotFound.vue";
-import store from "./store.js";
+import store from "./store/index.js";
 
 Vue.config.productionTip = false;
 Vue.use(VueRouter);
