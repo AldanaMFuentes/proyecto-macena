@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-img src="@/assets/home-photo.jpg" alt="Home-Photo" height="700" absolute>
+    <v-img src="@/assets/home-photo.jpg" alt="Home-Photo" height="600" absolute>
       <div class="home-title">
         <strong>PATRICK HARRINGTON</strong>
         <router-link to="/presentation" @click="setActiveBar('NavBar')">
@@ -9,7 +9,7 @@
       </div>
     </v-img>
     <v-container>
-      <v-row>
+      <v-row style="height: 520px" align-content="center">
         <v-col cols="4">
           <p class="home-subtitle"><strong>RECORRE MI PÁGINA</strong></p>
         </v-col>
