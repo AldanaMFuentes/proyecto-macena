@@ -47,7 +47,7 @@ export default {
       console.error("Error fetching education:", error);
     }
   },
-  async postContacto(payload) {
+  async postContacto(context, payload) {
     try {
       const response = await axios.post(
         `https://pil-2023-land-default-rtdb.firebaseio.com/contacto/Harrington.json`,
