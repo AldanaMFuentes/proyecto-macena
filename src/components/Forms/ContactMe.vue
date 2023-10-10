@@ -219,7 +219,7 @@ import {
   ValidationProvider,
   setInteractionMode,
 } from "vee-validate";
-import { mapActions, mapGetters } from "vuex";
+import { mapActions } from "vuex";
 
 setInteractionMode("eager");
 
@@ -258,6 +258,7 @@ export default {
     return {
       name: "",
       email: "",
+      phoneNumber: "",
       select: null,
       items: [
         "Conferencia de prensa",
@@ -282,9 +283,6 @@ export default {
       errorAlert: false,
       errorText: "Ocurrió un problema, intente de nuevo más tarde",
     };
-  },
-  computed: {
-    ...mapGetters(["phoneNumber"])
   },
   methods: {
     submit() {
@@ -364,13 +362,20 @@ export default {
       }
 
       return `https://api.whatsapp.com/send?phone=${
-        this.$store.state.phoneNumber
+        this.phoneNumber
       }&text=${encodeURIComponent(message)}`;
     },
-    ...mapActions(["getPhoneNumber", "postContacto"])
+    ...mapActions(["getPhoneNumber", "postContacto"]),
+    async obtenerNumero() {
+      try {
+        this.phoneNumber = await this.getPhoneNumber();
+      } catch (error) {
+        console.error(error)
+      }
+    }
   },
   created() {
-    this.getPhoneNumber();
+    this.obtenerNumero();
   },
 };
 </script>

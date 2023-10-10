@@ -10,7 +10,6 @@ const store = new Vuex.Store({
   state() {
     return {
       activeBar: "HomeBar",
-      phoneNumber: "",
     };
   },
   mutations: mutations,
