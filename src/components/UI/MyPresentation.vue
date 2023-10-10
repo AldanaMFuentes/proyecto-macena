@@ -4,7 +4,7 @@
       <v-progress-linear
         indeterminate
         color="#1E355F"
-        v-if="isLoading('presentation')"
+        v-if="isLoading"
       ></v-progress-linear>
       <v-list-item three-line>
         <v-list-item-content>
@@ -19,18 +19,30 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   name: "MyPresentation",
-  computed: {
-    ...mapGetters(["isLoading", "presentationData"])
+  data() {
+    return {
+      isLoading: false,
+      presentationData: ""
+    }
   },
   methods: {
     ...mapActions(["getPresentation"]),
+    async obtenerPresentacion() {
+      try {
+        this.isLoading = true
+        this.presentationData = await this.getPresentation();
+      } catch (error) {
+        console.error(error)
+      }
+      this.isLoading = false;
+    }
   },
   created() {
-    this.getPresentation();
+    this.obtenerPresentacion();
   },
 };
 </script>

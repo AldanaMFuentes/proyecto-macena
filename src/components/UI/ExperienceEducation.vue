@@ -6,7 +6,7 @@
         :key="card.title"
         :title="card.title"
         :activities="card.activities"
-        :isLoading="isLoading(card.stateName)"
+        :isLoading="card.isLoading"
       />
     </ul>
   </v-container>
@@ -14,7 +14,7 @@
 
 <script>
 import InfoCard from "./InfoCard.vue";
-import { mapActions, mapGetters } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   name: "ExperienceEducation",
@@ -39,29 +39,30 @@ export default {
       ],
     };
   },
-  computed: {
-    ...mapGetters(["isLoading", "experienceData", "educationData"]),
-  },
   methods: {
     ...mapActions(["getExperience", "getEducation"]),
-    setData() {
-      this.cards.forEach((card) => {
-        if (card.stateName === "experience") {
-          card.activities = this.$store.state.experienceData;
-        } else if (card.stateName === "education") {
-          card.activities = this.$store.state.educationData;
-        }
-      });
+    async setData() {
+      try {
+        await Promise.all(
+          this.cards.map(async (card) => {
+            if (card.stateName === "experience") {
+              card.isLoading = true;
+              card.activities = await this.getExperience();
+            } else if (card.stateName === "education") {
+              card.isLoading = true;
+              card.activities = await this.getEducation();
+            }
+            card.isLoading = false;
+          })
+        );
+      } catch (error) {
+        console.error(error);
+      }
     },
   },
-  watch: {
-    experienceData: "setData",
-    educationData: "setData"
-  },
-  beforeMount() {
-    this.getExperience();
-    this.getEducation();
-  },
+  created() {
+    this.setData();
+  }
 };
 </script>
 

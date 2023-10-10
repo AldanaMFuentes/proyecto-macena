@@ -10,14 +10,6 @@ const store = new Vuex.Store({
   state() {
     return {
       activeBar: "HomeBar",
-      loading: {
-        presentation: false,
-        experience: false,
-        education: false,
-      },
-      presentationData: null,
-      experienceData: [],
-      educationData: [],
       phoneNumber: "",
     };
   },
