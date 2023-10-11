@@ -324,7 +324,7 @@ export default {
           textarea: this.textarea,
           checkbox: this.checkboxSelected(),
         };
-        let respuesta = await this.postContacto(payload);
+        const respuesta = await this.postContacto(payload);
 
         if (respuesta.status === 200) {
           const whatsappLink = this.generateWhatsAppLink();
@@ -360,7 +360,7 @@ export default {
       if (this.textarea.trim() !== "") {
         message += `\n*Observaciones:* ${this.textarea}`;
       }
-
+      this.phoneNumber = this.obtenerNumero()
       return `https://api.whatsapp.com/send?phone=${
         this.phoneNumber
       }&text=${encodeURIComponent(message)}`;
@@ -373,10 +373,7 @@ export default {
         console.error(error)
       }
     }
-  },
-  created() {
-    this.obtenerNumero();
-  },
+  }
 };
 </script>
 

@@ -31,12 +31,12 @@ export default {
       console.error("Error fetching education:", error);
     }
   },
-  async getPhoneNumber(context) {
+  async getPhoneNumber() {
     try {
       const response = await axios.get(
         `https://pil-2023-land-default-rtdb.firebaseio.com/personajes/Harrington/celContacto.json`
       );
-      context.commit("setPhoneNumber", response.data);
+      return response?.data;
     } catch (error) {
       console.error("Error fetching education:", error);
     }
