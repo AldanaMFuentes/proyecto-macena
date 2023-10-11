@@ -360,7 +360,7 @@ export default {
       if (this.textarea.trim() !== "") {
         message += `\n*Observaciones:* ${this.textarea}`;
       }
-      this.phoneNumber = this.obtenerNumero()
+      this.obtenerNumero();
       return `https://api.whatsapp.com/send?phone=${
         this.phoneNumber
       }&text=${encodeURIComponent(message)}`;
@@ -370,10 +370,10 @@ export default {
       try {
         this.phoneNumber = await this.getPhoneNumber();
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
